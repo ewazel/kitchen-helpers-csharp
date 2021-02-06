@@ -12,7 +12,7 @@ namespace KitchenManagement.Employees
         
         private Kitchen Kitchen;
 
-        private bool isCooking;
+        private bool _isCooking;
 
         public Chef(string name, DateTime birthDate, int salary, Kitchen kitchen) 
             : base(name, birthDate, salary)
@@ -20,12 +20,13 @@ namespace KitchenManagement.Employees
             Singleton = this;
             HasKnife = true;
             OnUpdate();
+            Kitchen = kitchen;
         }
         
         protected sealed override void OnUpdate()
         {
-            isCooking = Util.RandomBool();
-            if (isCooking)
+            _isCooking = Util.RandomBool();
+            if (_isCooking)
             {
                 RequestIngredients();
             }
