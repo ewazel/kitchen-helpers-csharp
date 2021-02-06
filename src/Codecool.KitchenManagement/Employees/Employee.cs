@@ -7,15 +7,12 @@ namespace KitchenManagement.Employees
         public string Name { get; }
         public DateTime BirthDate { get; }
         public int Salary { get; }
-
-        protected Kitchen Kitchen;
-
-        public Employee(string name, DateTime birthDate, int salary, Kitchen kitchen)
+        
+        public Employee(string name, DateTime birthDate, int salary)
         {
             Name = name;
             BirthDate = birthDate;
             Salary = salary;
-            Kitchen = kitchen;
         }
 
         public override string ToString()

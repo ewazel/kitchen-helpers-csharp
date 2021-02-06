@@ -1,24 +1,31 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Codecool.KitchenManagement;
 using Codecool.KitchenManagement.Equipment;
 
 namespace KitchenManagement.Employees
 {
     public class Chef : CookingEmployee
     {
-        Random random = new Random();
         public static Chef Singleton { get; private set; }
+        
+        private Kitchen Kitchen;
+
+        private bool isCooking;
 
         public Chef(string name, DateTime birthDate, int salary, Kitchen kitchen) 
-            : base(name, birthDate, salary, kitchen)
+            : base(name, birthDate, salary)
         {
             Singleton = this;
+            HasKnife = true;
             OnUpdate();
         }
         
-        protected override void OnUpdate()
+        protected sealed override void OnUpdate()
         {
-            if (IsCooking())
+            isCooking = Util.RandomBool();
+            if (isCooking)
             {
                 RequestIngredients();
             }
@@ -29,21 +36,16 @@ namespace KitchenManagement.Employees
             
         }
 
-        private bool IsCooking()
-        {
-            return random.Next(0, 2) > 0;
-        }
-
         private void RequestIngredients()
         {
             Ingredient ingredient = ChooseIngredient();
+            List<Employee> listOfHelpers = Kitchen.GetAllEmployees<KitchenHelper>();
             
-            bool gotIngredient = Kitchen.listOfEmployees.Where(employee => employee.GetType() == typeof(KitchenHelper))
-                .Any(employee => GetIngredient((KitchenHelper) employee, ingredient));
+            bool gotIngredient = listOfHelpers.Any(employee => GetIngredient((KitchenHelper) employee, ingredient));
 
             if (!gotIngredient)
             {
-                foreach (var employee in Kitchen.listOfEmployees.Where(employee => employee.GetType() == typeof(KitchenHelper)))
+                foreach (var employee in listOfHelpers)
                 {
                     employee.Shout("We're all out");
                 }
@@ -53,7 +55,7 @@ namespace KitchenManagement.Employees
         private Ingredient ChooseIngredient()
         {
             Array values = Enum.GetValues(typeof(Ingredient));
-            return (Ingredient)values.GetValue(random.Next(values.Length));
+            return (Ingredient)values.GetValue(Util.RandomInt(0, values.Length));
         }
 
         private bool GetIngredient(KitchenHelper helper, Ingredient ingredient)

@@ -4,17 +4,11 @@ namespace KitchenManagement.Employees
 {
     public abstract class CookingEmployee : Employee
     {
-        // protected bool hasKnife;
-        public CookingEmployee(string name, DateTime birthDate, int salary, Kitchen kitchen) 
-            : base(name, birthDate, salary, kitchen)
+        protected bool HasKnife;
+        public CookingEmployee(string name, DateTime birthDate, int salary) 
+            : base(name, birthDate, salary)
         {
         }
 
-        // TODO!
-        protected override void OnUpdate()
-        {
-        }
-
-        
     }
 }

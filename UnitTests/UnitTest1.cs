@@ -21,7 +21,7 @@ namespace UnitTests
 
             while (!validHelper)
             {
-                KitchenHelper helper = new KitchenHelper(null, DateTime.Today, 0, null);
+                KitchenHelper helper = new KitchenHelper(null, DateTime.Today, 0);
                 if (helper.hasIngredient(ingredient))
                 {
                     result = helper.TryToGiveIngredient(ingredient);

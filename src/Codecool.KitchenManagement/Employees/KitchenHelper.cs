@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Codecool.KitchenManagement;
 using Codecool.KitchenManagement.Equipment;
 
 namespace KitchenManagement.Employees
@@ -15,8 +16,8 @@ namespace KitchenManagement.Employees
             };
         
         
-        public KitchenHelper(string name, DateTime birthDate, int salary, Kitchen kitchen) 
-            : base(name, birthDate, salary, kitchen)
+        public KitchenHelper(string name, DateTime birthDate, int salary) 
+            : base(name, birthDate, salary)
         {
             OnUpdate();
         }
@@ -32,11 +33,8 @@ namespace KitchenManagement.Employees
         private void TakeIngredients(Ingredient key)
         {
             int maxAmount = 3;
-            Random random = new Random();
             // TODO: add ingredient!
-            _bucketOfIngredients[key] = random.Next(maxAmount + 1);
-            
-            //TODO: to test: randomInt.cs to generate number within given limits
+            _bucketOfIngredients[key] = Util.RandomInt(0, maxAmount + 1);
         }
 
         /// <summary>

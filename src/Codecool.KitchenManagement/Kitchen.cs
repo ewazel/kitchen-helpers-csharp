@@ -32,6 +32,21 @@ namespace KitchenManagement.Employees
         {
             return listOfEmployees.Contains(Chef.Singleton);
         }
+
+        public List<Employee> GetAllEmployees<T>()
+        {
+            List<Employee> resultList = new List<Employee>();
+            foreach (Employee employee in listOfEmployees)
+            {
+                // if (employee.GetType() == typeof(T))
+                if (employee is T)
+                {
+                    resultList.Add(employee);
+                }
+            }
+
+            return resultList;
+        }
         
     }
 }
