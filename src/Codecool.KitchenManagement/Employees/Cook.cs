@@ -1,7 +1,6 @@
 using System;
-using Codecool.KitchenManagement;
 
-namespace KitchenManagement.Employees
+namespace Codecool.KitchenManagement.Employees
 {
     public class Cook : CookingEmployee
     {
@@ -9,9 +8,10 @@ namespace KitchenManagement.Employees
             : base(name, birthDate, salary)
         {
             HasKnife = false;
+            OnUpdate();
         }
         
-        protected override void OnUpdate()
+        protected sealed override void OnUpdate()
         {
             if (HasKnife)
             {

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Codecool.KitchenManagement;
-using Codecool.KitchenManagement.Equipment;
 
-namespace KitchenManagement.Employees
+namespace Codecool.KitchenManagement.Employees
 {
     public class Chef : CookingEmployee
     {

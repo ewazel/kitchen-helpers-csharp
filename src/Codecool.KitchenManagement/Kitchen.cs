@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Codecool.KitchenManagement.Employees;
 
-namespace KitchenManagement.Employees
+namespace Codecool.KitchenManagement
 {
     public class Kitchen
     {
-        private int amountOfCooks;
-        private int amountOfKitchenHelpers;
+        // private int amountOfCooks;
+        // private int amountOfKitchenHelpers;
         
         public  List<Employee> listOfEmployees = new List<Employee>();
 
@@ -28,7 +29,7 @@ namespace KitchenManagement.Employees
             }
         }
 
-        public bool isValid()
+        public bool IsValid()
         {
             return listOfEmployees.Contains(Chef.Singleton);
         }

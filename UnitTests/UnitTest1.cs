@@ -1,6 +1,6 @@
 using System;
-using Codecool.KitchenManagement.Equipment;
-using KitchenManagement.Employees;
+using Codecool.KitchenManagement;
+using Codecool.KitchenManagement.Employees;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -22,7 +22,7 @@ namespace UnitTests
             while (!validHelper)
             {
                 KitchenHelper helper = new KitchenHelper(null, DateTime.Today, 0);
-                if (helper.hasIngredient(ingredient))
+                if (helper.HasIngredient(ingredient))
                 {
                     result = helper.TryToGiveIngredient(ingredient);
                     validHelper = true;

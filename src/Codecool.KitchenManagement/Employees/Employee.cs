@@ -1,6 +1,6 @@
 using System;
 
-namespace KitchenManagement.Employees
+namespace Codecool.KitchenManagement.Employees
 {
     public abstract class Employee
     {

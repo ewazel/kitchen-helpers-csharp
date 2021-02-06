@@ -1,4 +1,4 @@
-namespace Codecool.KitchenManagement.Equipment
+namespace Codecool.KitchenManagement
 {
     public enum Ingredient : byte
     {

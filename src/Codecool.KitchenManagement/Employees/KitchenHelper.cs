@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Codecool.KitchenManagement;
-using Codecool.KitchenManagement.Equipment;
 
-namespace KitchenManagement.Employees
+namespace Codecool.KitchenManagement.Employees
 {
     public class KitchenHelper : Employee
     {
@@ -22,7 +20,7 @@ namespace KitchenManagement.Employees
             OnUpdate();
         }
         
-        protected override void OnUpdate()
+        protected sealed override void OnUpdate()
         {
             foreach (var key in _bucketOfIngredients.Keys)
             {
@@ -32,9 +30,12 @@ namespace KitchenManagement.Employees
 
         private void TakeIngredients(Ingredient key)
         {
-            int maxAmount = 3;
-            // TODO: add ingredient!
-            _bucketOfIngredients[key] = Util.RandomInt(0, maxAmount + 1);
+            const int maxAmount = 3;
+            int currentAmount = _bucketOfIngredients[key];
+            if (_bucketOfIngredients[key] < maxAmount)
+            {
+                _bucketOfIngredients[key] = Util.RandomInt(0, maxAmount - currentAmount + 1);
+            }
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace KitchenManagement.Employees
         /// </summary>
         /// <param name="ingredient"></param>
         /// <returns></returns>
-        public bool hasIngredient(Ingredient ingredient)
+        public bool HasIngredient(Ingredient ingredient)
         {
             if (_bucketOfIngredients.ContainsKey(ingredient))
             {
